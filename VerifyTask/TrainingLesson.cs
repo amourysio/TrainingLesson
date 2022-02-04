@@ -14,7 +14,7 @@ namespace VerifyTask
         public TrainingLesson(Guid Id, string Discription) : base(Id, Discription)
         {
             this._trainingMaterials = new List<BaseEntity>();
-            this._version = new byte[0];
+            this._version = new byte[8];
         }
         public void AddTrainingMaterial(BaseEntity material)
         {
@@ -29,7 +29,14 @@ namespace VerifyTask
         public byte[] Version
         {
             get { return _version; }
-            set { _version = value; }
+            set
+            {
+                if (_version.Length != 8)
+                {
+                    throw new ArgumentException("Isn't 8 Bytes");
+                }
+                else { _version = value; }
+            }
         }
 
         public new object Clone()

@@ -20,7 +20,7 @@ namespace VerifyTask
         {
            get { return Text; }
             set {
-                if (value == string.Empty || value.Length > value.IndexOf((char)10000))
+                if (_text.Length > 10000 || _text == string.Empty)
                     throw new ArgumentException("Empty String or Lenght is more than 10000 characters");
                 else { _text = value; }
                 }

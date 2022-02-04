@@ -17,6 +17,7 @@ namespace VerifyTask
             this._videoContentURI = VideoContentURI;
             this._splashScreenURI = SplashScreenURI;
             this._videoFormatType = VideoFormatType;
+            this._version = new byte[8];
         }
 
         public string VideoContentURI
@@ -24,7 +25,7 @@ namespace VerifyTask
             get { return _videoContentURI; }
             set
             {
-                if (value == string.Empty)
+                if (_videoContentURI == string.Empty)
                 {
                     throw new ArgumentException("Empty String");
                 }
@@ -47,7 +48,13 @@ namespace VerifyTask
         public byte[] Version
         {
             get { return _version; }
-            set { _version = value; }
+            set {
+                if (_version.Length != 8)
+                {
+                    throw new ArgumentException("Isn't 8 Bytes");
+                }
+                else { _version = value; }
+            }
         }
         public void SetVersion(byte[] version)
         {

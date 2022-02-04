@@ -23,8 +23,8 @@ namespace VerifyTask
         
         public Guid Id
         {
-            get { return this.Id; }
-            set { this.Id = value; }
+            get { return this._id; }
+            set { this._id = value; }
         
         }
         public string Description
@@ -32,9 +32,9 @@ namespace VerifyTask
             get { return this._description; }
             set
             {
-                if (value.Length > value.IndexOf((char)256))
+                if (_description.Length > 256)
                 {
-                    throw new ArgumentException("The size of string is up than 256 characters");
+                    throw new ArgumentException("Description length is more than 256 characters");
                 }
                 else { this._description = value; }
             }
